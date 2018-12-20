@@ -10,8 +10,8 @@ DELETE FROM creature_template WHERE entry = @BUFFNPC;
 INSERT INTO creature_template (entry, modelid1, name, subname, IconName, gossip_menu_id, minlevel, maxlevel, HealthModifier, ManaModifier, ArmorModifier, faction, npcflag, speed_walk, speed_run, scale, rank, DamageModifier, unit_class, unit_flags, type, type_flags, InhabitType, RegenHealth, flags_extra, AiName) VALUES
 (@BUFFNPC, '21572', @NAME, @SUBNAME, 'Directions', '50000', 71, 71, 1.56, 1.56, 1.56, 35, 3, 1, 1.14286, 1, 1, 1, 1, 2, 7, 138936390, 3, 1, 2, 'SmartAI');
 
-SET @GID := IFNULL((SELECT id FROM gossip_menu_option WHERE menu_id = @GOPTION ORDER BY id DESC LIMIT 1), 0)+1;
-INSERT INTO gossip_menu_option (menu_id, id, option_icon, option_text, option_id, npc_option_npcflag, action_menu_id, action_poi_id, box_coded, box_money, box_text) VALUES
+SET @GID := IFNULL((SELECT OptionID FROM gossip_menu_option WHERE MenuID = @GOPTION ORDER BY OptionID DESC LIMIT 1), 0)+1;
+INSERT INTO gossip_menu_option (MenuID, OptionID, optionicon, optiontext, optiontype, optionnpcflag, actionmenuid, actionpoiid, boxcoded, boxmoney, boxtext) VALUES
 (@GOPTION, @GID, 2, 'Power Word: Fortitude', 1, 1, @GOPTION, 0, 0, 0, NULL), 
 (@GOPTION, @GID+1, 2, 'Divine Spirit', 1, 1, @GOPTION, 0, 0, 0, NULL), 
 (@GOPTION, @GID+2, 2, 'Shadow Protection', 1, 1, @GOPTION, 0, 0, 0, NULL), 
